@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block title %}Training Edit{% endblock %}
+{% block body %}
+    {{ form(form) }}
+    <a href="{{ path('admin_training') }}"><button class="btn btn-danger">Cancel</button></a>
+{% endblock %}

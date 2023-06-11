@@ -1,0 +1,16 @@
+<footer class="container-fluid def-bg-colour d-flex py-1 gap-1 text-black">
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_admin') }}">Admin Panel</a>
+    {% endif %}
+    {% if is_granted('ROLE_INSTRUCTOR') %}
+        <a href="{{ path('admin_lesson') }}">Lesson Manager</a>
+    {% endif %}
+    <div class="d-flex align-items-center gap-1">
+        <p class="m-0 fw-light">©</p>
+        <p class="m-0 fw-light">2023 - 2023</p>
+    </div>
+    <div class="flex-grow-1"></div>
+    <div class="d-flex align-items-center gap-1">
+        <p class="m-0 fw-lighter">Copyrights claimed by Green UtensilsPapers By Space blackholes</p>
+    </div>
+</footer>

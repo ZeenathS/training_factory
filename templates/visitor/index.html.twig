@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-grow-1 align-items-center justify-content-center text-center">
+        <div>
+            <p class="text-white fs-2" style="margin: 0 150px 0 150px;">
+                Welcome to Training Factory! We prioritize respect, sportsmanship, and safety.
+                Embrace discipline and dedication as you reach new heights with our expert coaches.
+                Keep our facilities clean and wear proper gear for a healthy training environment.
+                Join us in fostering confidentiality and complying with our rules for a professional atmosphere.
+            </p>
+            {% if not is_granted('IS_AUTHENTICATED') %}
+            <div class="d-flex justify-content-around">
+                <a href="{{ path("signIn") }}" class="def-btn py-2 px-4 rounded-3 text-black text-decoration-none">Sign in</a>
+                <a href="{{ path("register") }}" class="def-btn py-2 px-4 rounded-3 text-black text-decoration-none">Register now!</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

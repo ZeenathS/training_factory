@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %} Lessons {% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="mb-4">
+            <a href="{{ path('app_training') }}" class="def-btn py-2 px-4 rounded-3 text-black text-decoration-none">
+                Return to Trainings Page
+            </a>
+        </div>
+        {% if lessons.count > 0 %}
+            <div class="row row-cols-3">
+                {% for lesson in lessons|sort((a, b) => a.date > b.date) %}
+                    <div class="col d-flex justify-content-center">
+                        <div class="card text-bg-dark" style="width: 18rem;">
+                            <div class="card-header">
+                                <h5 class="card-title m-0">{{ lesson.date|date('l jS F, Y') }} @</h5>
+                                <h5 class="card-title m-0">{{ lesson.date|date('g:ia') }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ lesson.location }}</p>
+                                <p>{{ lesson.capacity - lesson.getRegistrations().count() }} spaces left</p>
+                                {% if lesson.getUser() %}
+                                    <p>Instructor is {{ lesson.getUser().username }}.</p>
+                                {% else %}
+                                    <p>There is no instructor assigned to this lesson yet.</p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{{ path('app_lesson_register', { lesson: lesson.id }) }}"
+                                       class="def-btn py-2 px-4 rounded-3 text-black text-decoration-none">Register</a>
+                                    {% if lesson.getTraining().getExtraCosts() %}
+                                        <p class="text-success m-0" style="font-size: 1.3rem">
+                                            €{{ lesson.getTraining().getExtraCosts() }}</p>
+                                    {% endif %}
+                                </div>
+                                {% if lesson.getTraining().getExtraCosts() %}
+                                    <p class="m-0 mt-1 text-secondary" style="font-size: 0.75rem;">Payments to be made
+                                        at
+                                        the door.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h3>There are no lessons available for this training right now. Please check back later!</h3>
+        {% endif %}
+    </div>
+{% endblock %}

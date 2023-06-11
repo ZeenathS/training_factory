@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %}Lesson overview{% endblock %}
+{% block body %}
+    <a href="{{ path('admin_lesson_create') }}"><button class="def-btn py-2 px-4 rounded-3 text-black">Create New Lesson</button></a>
+    <a href="{{ path('app_admin') }}"><button class="def-btn py-2 px-4 rounded-3 text-black">Go back to dashboard</button></a>
+    <table class="table text-white table-dark table-hover mt-2">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Training</th>
+            <th scope="col">Instructor</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Date</th>
+            <th scope="col">Location</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <th scope="row">{{ lesson.id }}</th>
+                <td>{{ lesson.training.title }}</td>
+                {% if lesson.user %}
+                    <td>{{ lesson.user.username }}</td>
+                {% else %}
+                    <td>None</td>
+                {% endif %}
+                <td>{{ lesson.training.duration }} hours</td>
+                <td>{{ lesson.date|date("m/d/Y") }}</td>
+                <td>{{ lesson.location }}</td>
+                <td>{{ lesson.capacity }}</td>
+                <td>
+                    <a href="{{ path('admin_lesson_edit', { lesson: lesson.id }) }}" class="me-2">
+                        View/Edit
+                    </a>
+                    <a href="{{ path('admin_lesson_delete', { lesson: lesson.id }) }}">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        {% endfor%}
+        </tbody>
+    </table>
+{% endblock %}

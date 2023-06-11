@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello InstructorController!{% endblock %}
+
+{% block body %}
+    {% for instructor in instructors %}
+        <div class="text-white">
+            {{ instructor.id}}
+            {{ instructor.username }}
+        </div>
+    {% endfor %}
+{% endblock %}

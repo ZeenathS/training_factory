@@ -1,0 +1,59 @@
+{#  Header  #}
+<div class="container-fluid bg-black">
+    <div class="row align-items-center">
+        <div class="col">
+            <nav class="navbar">
+                <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <img class="def-arrow-size" src="{{ asset("imgs/ArrowRight.png") }}">
+                </a>
+            </nav>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <a href="{{ path('app_visitor') }}">
+                <img src="{{ asset("imgs/TrainingFactory.svg") }}" alt="Logo Training Factory">
+            </a>
+        </div>
+    </div>
+</div>
+{#  Offcanvas nav #}
+<div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+    <div class="offcanvas-header p-1">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <a href="{{ path('app_visitor') }}">
+            <img src="{{ asset("imgs/TrainingFactory.svg") }}" alt="Logo Training Factory">
+        </a>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav d-flex justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path("app_visitor") }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_training') }}">Training</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('contact') }}">Contact Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('regulations') }}">Read our rules and regulations!</a>
+            </li>
+        </ul>
+    </div>
+    {% if is_granted('IS_AUTHENTICATED') %}
+        <div class="my-5 me-5 ms-3">
+            <a href="{{ path('logout') }}">
+                <button type="submit" class="def-btn py-2 px-4 rounded-3 text-black">Log out</button>
+            </a>
+        </div>
+    {% else %}
+        <div class="my-5 me-5 ms-3">
+            <a href="{{ path('signIn') }}">
+                <button class="def-btn py-2 px-4 rounded-3 text-black">Sign In</button>
+            </a>
+            <a href="{{ path('register') }}">
+                <button class="def-btn py-2 px-4 rounded-3 text-black">Register</button>
+            </a>
+        </div>
+    {% endif %}
+
+</div>

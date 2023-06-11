@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Training overview{% endblock %}
+{% block body %}
+    <a href="{{ path('admin_training_create') }}"><button class="def-btn py-2 px-4 rounded-3 text-black">Create New Training</button></a>
+    <a href="{{ path('app_admin') }}"><button class="def-btn py-2 px-4 rounded-3 text-black">Go back to Dashboard</button></a>
+    <table class="table text-white table-dark table-hover mt-2">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for training in trainings %}
+                <tr>
+                    <th scope="row">{{ training.id }}</th>
+                    <td>{{ training.title }}</td>
+                    <td>{{ training.duration }}</td>
+                    <td>
+                        <a href="{{ path('admin_training_edit', { training: training.id }) }}" class="me-2">
+                            View/Edit
+                        </a>
+                        <a href="{{ path('admin_training_delete', { training: training.id }) }}">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Lesson Edit{% endblock %}
+{% block body %}
+    <h2>Editing Lesson</h2>
+    {{ form(form) }}
+    <a href="{{ path('admin_lesson') }}"><button class="btn btn-danger">Cancel</button></a>
+
+    <div class="mt-4">
+        <h3>Registrations</h3>
+        <table class="table text-white table-dark table-hover mt-2">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th scope="col">Actions</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for registration in registrations %}
+                <tr>
+                    <th scope="row">{{ registration.id }}</th>
+                    <td>{{ registration.user.username }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td><a href="#">Remove</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans Display';
+}
+
+html body {
+    background-color: #171817;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: white !important;
+}
+
+.def-page-logo {
+    width: 319px;
+    height: 80px;
+    line-height: 80px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+
+.def-page-title {
+    width: 191px;
+    height: 80px;
+    font-size: 40px;
+    font-family: 'Noto Sans Display';
+    font-style: normal;
+    line-height: 54px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+}
+
+.def-bg-colour {
+    background-color: #87FF87;
+}
+
+.def-arrow-size {
+    height: 30px;
+    width: 30px;
+}
+
+.def-btn {
+    background-color: #87FF87;
+    border: #499649 2px solid;
+}
+
+.def-btn:hover {
+    background-color: #5cad5c;
+}
+
+@media screen {
+    
+}

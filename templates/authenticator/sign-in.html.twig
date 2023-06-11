@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %} TF - Register {% endblock %}
+{% block body %}
+    {% if error %}
+        <div class="text-white">
+            {{ error.messageKey | trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+    <div class="container d-flex align-items-center justify-content-center flex-grow-1">
+        <form action="{{ path('signIn' ) }}" method="post" class="flex-column d-flex">
+            <label for="username" class="text-white">Email:</label>
+            <input type="text" id="username" name="_username" value="{{ lastUsername }}"/>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="_password"/>
+
+            <input type="hidden" name="_target_path" value="{{ path("app_member") }}"/>
+            <button type="submit" class="def-btn py-2 px-4 rounded-3 text-black">Log in</button>
+            <a href="{{ path("register") }}" class="text-white" style="font-size: 14px">Or make an account</a>
+        </form>
+    </div>
+{% endblock %}
