@@ -13,8 +13,8 @@
             </p>
             {% if not is_granted('IS_AUTHENTICATED') %}
             <div class="d-flex justify-content-around">
-                <a href="{{ path("signIn") }}" class="def-btn py-2 px-4 rounded-3 text-black text-decoration-none">Sign in</a>
-                <a href="{{ path("register") }}" class="def-btn py-2 px-4 rounded-3 text-black text-decoration-none">Register now!</a>
+                <a href="{{ path("signIn") }}" class="def-btn">Sign in</a>
+                <a href="{{ path("register") }}" class="def-btn">Register now!</a>
             </div>
             {% endif %}
         </div>

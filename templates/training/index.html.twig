@@ -5,13 +5,12 @@
         {% for training in trainings %}
             <div class="col d-flex justify-content-center">
                 <div class="card text-bg-dark" style="width: 18rem;">
-                    <img src="{{ asset('imgs/placeholder.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ training.title }}</h5>
                         <p class="card-text">{{ training.description }}</p>
                     </div>
                     <div class="card-footer py-3">
-                        <a href="{{ path('app_training_lessons', { training: training.id }) }}" class="def-btn py-2 px-4 rounded-3 text-black">See Available Lessons</a>
+                        <a href="{{ path('app_training_lessons', { training: training.id }) }}" class="def-btn">See Available Lessons</a>
                     </div>
                 </div>
             </div>

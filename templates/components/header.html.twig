@@ -42,16 +42,16 @@
     {% if is_granted('IS_AUTHENTICATED') %}
         <div class="my-5 me-5 ms-3">
             <a href="{{ path('logout') }}">
-                <button type="submit" class="def-btn py-2 px-4 rounded-3 text-black">Log out</button>
+                <button type="submit" class="def-btn">Log out</button>
             </a>
         </div>
     {% else %}
         <div class="my-5 me-5 ms-3">
             <a href="{{ path('signIn') }}">
-                <button class="def-btn py-2 px-4 rounded-3 text-black">Sign In</button>
+                <button class="def-btn">Sign In</button>
             </a>
             <a href="{{ path('register') }}">
-                <button class="def-btn py-2 px-4 rounded-3 text-black">Register</button>
+                <button class="def-btn">Register</button>
             </a>
         </div>
     {% endif %}

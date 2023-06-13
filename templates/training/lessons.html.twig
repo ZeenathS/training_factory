@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <div class="mb-4">
-            <a href="{{ path('app_training') }}" class="def-btn py-2 px-4 rounded-3 text-black text-decoration-none">
+            <a href="{{ path('app_training') }}" class="def-btn">
                 Return to Trainings Page
             </a>
         </div>
@@ -28,7 +28,7 @@
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a href="{{ path('app_lesson_register', { lesson: lesson.id }) }}"
-                                       class="def-btn py-2 px-4 rounded-3 text-black text-decoration-none">Register</a>
+                                       class="def-btn">Register</a>
                                     {% if lesson.getTraining().getExtraCosts() %}
                                         <p class="text-success m-0" style="font-size: 1.3rem">
                                             €{{ lesson.getTraining().getExtraCosts() }}</p>
