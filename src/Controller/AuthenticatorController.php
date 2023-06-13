@@ -48,6 +48,8 @@ class AuthenticatorController extends AbstractController
         $user->setRoles(['ROLE_MEMBER']);
 
         $form = $this->createForm(UserType::class, $user);
+        $form->remove('saveAndExit');
+        $form->remove('save');
 
         $form->handleRequest($request);
 

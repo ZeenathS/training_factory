@@ -32,12 +32,12 @@ class   UserType extends AbstractType
                 'second_options' => ['label' => 'Confirm Password']
             ])
             ->add('date_of_birth', DateType::class,[
-//                'input' => 'datetime',
                 'widget' => 'choice',
-                'input'  => 'datetime_immutable',
                 'years' => range($datePast, $date),
             ])
             ->add('Register', SubmitType::class)
+            ->add('saveAndExit', SubmitType::class, ['label' => 'Save & Exit'])
+            ->add('Save', SubmitType::class, ['label' => 'Save'])
         ;
     }
 
