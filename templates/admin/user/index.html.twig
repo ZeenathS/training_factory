@@ -1,16 +1,32 @@
 {% extends 'base.html.twig' %}
 {% block title %} User Manager {% endblock %}
 {% block body %}
-{{ form_start(form) }}
-    {{ form_errors(form) }}
-
-    {{ form_row(form.first_name) }}
-    {{ form_row(form.last_name) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.password) }}
-
-    {{ form_row(form.submit, { 'label': 'Submit me' }) }}
-{{ form_end(form) }}
-    <a href="{{ path('app_admin') }}" class="def-btn">Go back to Dashboard</a>
+    <a href="{{ path('app_admin') }}" class="def-btn" style="width: max-content">Go back to Dashboard</a>
+    <table class="table text-white table-dark table-hover mt-2">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.email }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                    <a href="{{ path('admin_edit_user', { user: user.id }) }}" class="me-2">
+                        View/Edit
+                    </a>
+                    <a href="{{ path('admin_delete_user', { user: user.id }) }}">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        {% endfor%}
+        </tbody>
+    </table>
 {% endblock %}
