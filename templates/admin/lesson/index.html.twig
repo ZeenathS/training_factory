@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block title %}Lesson overview{% endblock %}
 {% block body %}
-    <a href="{{ path('admin_lesson_create') }}"><button class="def-btn">Create New Lesson</button></a>
-    <a href="{{ path('app_admin') }}"><button class="def-btn">Go back to dashboard</button></a>
+    <div class="d-flex gap-2">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}" class="def-btn">Go back to dashboard</a>
+        {% endif %}
+        <a href="{{ path('admin_lesson_create') }}" class="def-btn">Create New Lesson</a>
+    </div>
     <table class="table text-white table-dark table-hover mt-2">
         <thead>
         <tr>
