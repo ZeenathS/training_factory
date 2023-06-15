@@ -33,6 +33,10 @@ class AdminController extends AbstractController
         $user->addRole('ROLE_INSTRUCTOR');
         $this->userRepository->save($user, true);
 
+        if($request->query->has('redirect')) {
+            return $this->redirect($request->query->get('redirect'));
+        }
+
         return $this->redirectToRoute('app_admin');
     }
 
@@ -41,6 +45,10 @@ class AdminController extends AbstractController
     {
         $user->removeRole('ROLE_INSTRUCTOR');
         $this->userRepository->save($user, true);
+
+        if($request->query->has('redirect')) {
+            return $this->redirect($request->query->get('redirect'));
+        }
 
         return $this->redirectToRoute('app_admin');
     }
