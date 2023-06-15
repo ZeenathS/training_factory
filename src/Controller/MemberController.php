@@ -18,8 +18,6 @@
         #[Route('/profile', name: 'app_profile')]
         public function index(): Response
         {
-
-            $user = $this->getUser();
             return $this->render('member/index.html.twig', [
                 'controller_name' => 'MemberController',
                 'user' => $user,
