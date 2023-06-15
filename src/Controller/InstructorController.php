@@ -39,17 +39,6 @@ class InstructorController extends AbstractController
     // Create Instructor
     #[Route('/create', name: 'create')]
     public function createInstructor(EntityManagerInterface $entityManager): Response {
-//
-//        $dash = new User();
-//        $dash->setUser('Dash');
-//        $dash->setHiringDate('07-06-2023');
-//        $dash->setSalary('885.15');
-//        $dash->setSocialSecNumber(1234586);
-//
-//        $entityManager->persist($dash);
-//        $entityManager->flush();
-
-//        $form = $this->createForm()
 
         return $this->render('instructor/create.html.twig');
     }
