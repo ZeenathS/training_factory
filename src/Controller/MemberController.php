@@ -13,10 +13,10 @@
 
     class MemberController extends AbstractController
     {
-        public function __construct(private readonly Security $security, private readonly RegistrationRepository $registrationRepository, private readonly UserRepository $userRepository) {}
+        public function __construct(private readonly Security $security, private readonly UserRepository $userRepository) {}
 
         #[Route('/profile', name: 'app_profile')]
-        public function index(UserRepository $userRepository): Response
+        public function index(): Response
         {
 
             $user = $this->getUser();
