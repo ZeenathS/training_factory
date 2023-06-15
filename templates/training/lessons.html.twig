@@ -27,8 +27,13 @@
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{{ path('app_lesson_register', { lesson: lesson.id }) }}"
-                                       class="def-btn">Register</a>
+                                    {% if lesson.getRegistrations()|filter(registration => registration.user == user)|length > 0 %}
+                                        <a href="{{ path('app_lesson_unregister', { lesson: lesson.id }) }}"
+                                           class="btn btn-danger">Unregister</a>
+                                    {% else %}
+                                        <a href="{{ path('app_lesson_register', { lesson: lesson.id }) }}"
+                                           class="def-btn">Register</a>
+                                    {% endif %}
                                     {% if lesson.getTraining().getExtraCosts() %}
                                         <p class="text-success m-0" style="font-size: 1.3rem">
                                             €{{ lesson.getTraining().getExtraCosts() }}</p>
