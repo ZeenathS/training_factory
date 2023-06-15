@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Lesson;
+use App\Entity\Registration;
 use App\Form\LessonType;
 use App\Repository\LessonRepository;
+use App\Repository\RegistrationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/lesson')]
 class LessonManagerController extends AbstractController
