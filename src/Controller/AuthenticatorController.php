@@ -19,7 +19,7 @@ class AuthenticatorController extends AbstractController
     #[Route('/sign-in', name: 'signIn')]
     public function login(AuthenticationUtils $authenticationUtils): Response {
         if($this->isGranted('IS_AUTHENTICATED')) {
-            return $this->redirectToRoute('app_member');
+            return $this->redirectToRoute('app_profile');
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -41,7 +41,7 @@ class AuthenticatorController extends AbstractController
     )
     : Response {
         if($security->isGranted('IS_AUTHENTICATED')) {
-            return $this->redirectToRoute('app_member');
+            return $this->redirectToRoute('app_profile');
         }
 
         $user = new User();
@@ -50,6 +50,7 @@ class AuthenticatorController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->remove('saveAndExit');
         $form->remove('save');
+        $form->remove('edit');
 
         $form->handleRequest($request);
 
@@ -85,7 +86,7 @@ class AuthenticatorController extends AbstractController
             return $this->redirectToRoute('app_admin');
         }
         if ($security->isGranted('ROLE_MEMBER')) {
-            return $this->redirectToRoute('app_member');
+            return $this->redirectToRoute('app_profile');
         }
         if ($security->isGranted('ROLE_INSTRUCTOR')) {
             return $this->redirectToRoute('app_instructors');
