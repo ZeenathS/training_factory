@@ -7,7 +7,7 @@
         <p>First name: {{ user.firstname }}</p>
         <p>Last name: {{ user.lastname }}</p>
         <p>Email: {{ user.email }}</p>
-        <p>Date of birth: {{ user.dateofbirth|date("l, jS") }} of {{ user.dateofbirth|date("F") }} | {{ user.dateofbirth|date("j-m-Y") }}</p>
+        <p>Date of birth: {{ user.dateofbirth|date("l, jS") }} of {{ user.dateofbirth|date("F | j-m-Y") }}</p>
     </div>
     <a href="{{ path('app_edit_profile') }}" class="btn btn-info" style="width: max-content">Edit profile</a>
 
