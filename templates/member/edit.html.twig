@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block title %} Edit profile {% endblock %}
+{% block body %}
+    <a href="{{ path('app_profile') }}" class="text-white">Return to profile</a>
+    {{ form(form) }}
+{% endblock %}
