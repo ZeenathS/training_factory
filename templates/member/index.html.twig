@@ -10,4 +10,28 @@
         <p>Date of birth: {{ user.dateofbirth|date("l, jS") }} of {{ user.dateofbirth|date("F") }} | {{ user.dateofbirth|date("j-m-Y") }}</p>
     </div>
     <a href="{{ path('app_edit_profile') }}" class="btn btn-info" style="width: max-content">Edit profile</a>
+
+    {% if user.getRegistration()|length > 0 %}
+        <hr />
+
+        <h4>Your Registered Lessons</h4>
+        <table class="table text-white table-dark table-hover mt-2">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for registration in user.getRegistration() %}
+                <tr>
+                    <th scope="row">{{ registration.id }}</th>
+                    <td>{{ registration.user.username }}</td>
+                    <td><a href="{{ path('app_lesson_unregister', { lesson: registration.lesson.id, redirect: path('app_profile') }) }}">Remove</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}

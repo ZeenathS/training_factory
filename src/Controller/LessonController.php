@@ -7,6 +7,7 @@ use App\Entity\Registration;
 use App\Repository\RegistrationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -36,7 +37,7 @@ class LessonController extends AbstractController
 
     #[Route('/lesson/{lesson}/unregister', name: 'app_lesson_unregister')]
     #[IsGranted('IS_AUTHENTICATED')]
-    public function unregisterForLesson(Lesson $lesson, Security $security, RegistrationRepository $registrationRepository): Response
+    public function unregisterForLesson(Lesson $lesson, Security $security, RegistrationRepository $registrationRepository, Request $request): Response
     {
         if(
             $lesson->getRegistrations()->exists(function($_, Registration $registration) use($security) {
@@ -47,6 +48,10 @@ class LessonController extends AbstractController
                 return $registration->getUser() === $security->getUser();
             });
             $registrationRepository->remove($registration, true);
+        }
+
+        if($request->query->has('redirect')) {
+            return $this->redirect($request->query->get('redirect'));
         }
 
         return $this->redirectToRoute('app_training_lessons', ['training' => $lesson->getTraining()->getId()]);
