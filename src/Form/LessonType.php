@@ -53,11 +53,16 @@ class LessonType extends AbstractType
         $builder->get('user')->addModelTransformer(new CallbackTransformer(
             function(?User $user): string {
                 if(is_null($user)) return "";
-                return $user->getId();
+                return $user->getUsername();
             },
             function($user_id) use($userRepository): ?User {
                 if($user_id == "") return null;
-                return $userRepository->find($user_id);
+//                return $userRepository->find($user_id);
+                $usersFound = $userRepository->findBy(['username' => $user_id]);
+                if(sizeof($usersFound) > 0) {
+                    return $usersFound[0];
+                }
+                return null;
             }
         ));
     }
