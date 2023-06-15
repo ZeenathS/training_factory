@@ -69,4 +69,12 @@ class LessonManagerController extends AbstractController
             'registrations' => $lesson->getRegistrations()
         ]);
     }
+
+    #[Route('/registrations/{registration}/remove', name: 'admin_lesson_registrations_remove')]
+    public function unregisterUserForLesson(Registration $registration, RegistrationRepository $registrationRepository): Response
+    {
+        $lesson = $registration->getLesson();
+        $registrationRepository->remove($registration, true);
+        return $this->redirectToRoute('admin_lesson_edit', ['lesson' => $lesson->getId()]);
+    }
 }
