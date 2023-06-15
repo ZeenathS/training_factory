@@ -38,6 +38,7 @@ class   UserType extends AbstractType
             ->add('Register', SubmitType::class)
             ->add('saveAndExit', SubmitType::class, ['label' => 'Save & Exit'])
             ->add('Save', SubmitType::class, ['label' => 'Save'])
+            ->add('edit', SubmitType::class, ['label' => 'Edit'])
         ;
     }
 
