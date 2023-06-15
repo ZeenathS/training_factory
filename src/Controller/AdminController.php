@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -18,8 +17,6 @@ class AdminController extends AbstractController
     #[Route('/', name: 'app_admin')]
     public function index(): Response
     {
-//        return $this->json($this->userRepository->getInstructors());
-
         $users = $this->userRepository->findAll();
 
         return $this->render('admin/index.html.twig', [
