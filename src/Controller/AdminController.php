@@ -64,8 +64,7 @@ class AdminController extends AbstractController
     public function editUsers(User $user, Request $request): Response
     {
 
-        $form = $this->createForm(UserType::class, $user);
-        $form->remove('Register');
+        $form = $this->createForm(UserEditType::class, $user);
         $form->remove('password');
         $form->handleRequest($request);
 
