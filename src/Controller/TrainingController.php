@@ -33,7 +33,8 @@ class TrainingController extends AbstractController
         });
 
         return $this->render('training/lessons.html.twig', [
-            'lessons' => $lessons
+            'lessons' => $lessons,
+            'user' => $this->getUser()
         ]);
     }
 }
