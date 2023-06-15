@@ -23,7 +23,7 @@
                     <th scope="row">{{ registration.id }}</th>
                     <td>{{ registration.user.username }}</td>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <td><a href="#">Remove</a></td>
+                        <td><a href="{{ path('admin_lesson_registrations_remove', { registration: registration.id }) }}">Remove</a></td>
                     {% endif %}
                 </tr>
             {% endfor %}
