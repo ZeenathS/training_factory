@@ -1,9 +1,7 @@
 <?php
     namespace App\Controller;
-    use App\Entity\User;
     use App\Form\UserType;
     use App\Repository\UserRepository;
-    use App\Repository\RegistrationRepository;
     use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     use Symfony\Bundle\SecurityBundle\Security;
     use Symfony\Component\HttpFoundation\Request;
@@ -20,16 +18,33 @@
         {
             return $this->render('member/index.html.twig', [
                 'controller_name' => 'MemberController',
-                'user' => $user,
+                'user' => $this->security->getUser(),
             ]);
         }
 
-    #[Route('/member', name: 'app_member')]
-    public function index(): Response
-    {
-        return $this->render('member/index.html.twig', [
-            'controller_name' => 'MemberController',
-        ]);
+        #[Route('/edit-profile', name:'app_edit_profile')]
+        public function editProfile(Request $request, AuthenticationUtils $authenticationUtils): Response
+        {
+            $user = $this->getUser();
+
+            $form = $this->createForm(UserType::class, $user);
+            $form->remove('Register');
+            $form->remove('edit');
+            $form->remove('password');
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $user = $form->getData();
+                $this->userRepository->save($user, true);
+
+                if ($form->get('saveAndExit')->isClicked()) {
+                    return $this->redirectToRoute('app_profile');
+                }
+            }
+
+            return $this->render('member/edit.html.twig', [
+                'form' => $form,
+            ]);
+        }
     }
-}
 ?>

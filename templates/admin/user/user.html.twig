@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %} User Manager {% endblock %}
+{% block body %}
+    <h3 class="mb-3">Editing {{ user.username }}</h3>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.email) }}
+        {{ form_row(form.first_name) }}
+        {{ form_row(form.last_name) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.date_of_birth) }}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <hr />
+
+            {{ form_row(form.hiring_date) }}
+            {{ form_row(form.salary) }}
+            {{ form_row(form.social_sec_number) }}
+        {% endif %}
+    {{ form_end(form, {render_rest: false}) }}
+{#    <div class="d-flex gap-3">#}
+{#        <a href="{{ path('admin_users') }}" class="def-btn" style="width: max-content">#}
+{#            Save#}
+{#        </a>#}
+{#        <a href="{{ path('admin_users') }}" class="def-btn" style="width: max-content">#}
+{#            Save & Exit#}
+{#        </a>#}
+    <a href="{{ path('admin_users') }}" class="btn btn-danger text-center align-items-center d-flex" style="width: max-content">
+        Cancel
+    </a>
+    <hr />
+    <h3>More Options</h3>
+    <form method="post" class="mt-3">
+        {% if user.getRoles()|filter(role => role == 'ROLE_INSTRUCTOR')|length == 0 %}
+            <button formaction="{{ path('add_instructor', { user: user.id, redirect: path('admin_edit_user', { user: user.id }) }) }}" class="btn btn-success">
+                Make instructor
+            </button>
+        {% else %}
+            <button formaction="{{ path('remove_instructor', { user: user.id, redirect: path('admin_edit_user', { user: user.id }) }) }}" class="btn btn-danger">
+                Remove Instructor
+            </button>
+        {% endif %}
+    </form>
+{% endblock %}
