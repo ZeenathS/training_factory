@@ -28,7 +28,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('/add-instructor/{user}', name: 'add_instructor', methods: ['POST'])]
-    public function addInstructor(User $user): Response
+    public function addInstructor(User $user, Request $request): Response
     {
         $user->addRole('ROLE_INSTRUCTOR');
         $this->userRepository->save($user, true);
@@ -41,7 +41,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('/remove-instructor/{user}', name: 'remove_instructor', methods: ['POST'])]
-    public function removeInstructor(User $user): Response
+    public function removeInstructor(User $user, Request $request): Response
     {
         $user->removeRole('ROLE_INSTRUCTOR');
         $this->userRepository->save($user, true);
