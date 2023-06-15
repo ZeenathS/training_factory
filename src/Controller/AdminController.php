@@ -64,7 +64,6 @@ class AdminController extends AbstractController
             $user = $form->getData();
             $this->userRepository->save($user, true);
 
-            if ($form->get('Save')->isClicked()) {
             if ($form->get('save')->isClicked()) {
                 return $this->redirectToRoute('admin_edit_user', ['user' => $user->getId()]);
             }
