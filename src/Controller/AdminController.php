@@ -82,6 +82,7 @@ class AdminController extends AbstractController
         }
         return $this->render('admin/user/user.html.twig', [
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
