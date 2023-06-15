@@ -47,27 +47,43 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('app_admin');
     }
 
-    #[Route('/user-edit', name: 'admin_edit_user')]
+    #[Route('/users', name: 'admin_users')]
+    public function getAllUsers(): Response
+    {
+        $users = $this->userRepository->findAll();
+        return $this->render('admin/user/index.html.twig', ['users' => $users]);
+    }
+
+    #[Route('/user-edit/{user}', name: 'admin_edit_user')]
     public function editUsers(User $user, Request $request): Response
     {
+
         $form = $this->createForm(UserType::class, $user);
+        $form->remove('Register');
+        $form->remove('password');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
             $user = $form->getData();
             $this->userRepository->save($user, true);
 
-            if ($form->get('save')->isClicked()) {
-                return $this->redirectToRoute('admin_lesson_edit', ['lesson' => $lesson->getId()]);
+            if ($form->get('Save')->isClicked()) {
+                return $this->redirectToRoute('admin_edit_user', ['user' => $user->getId()]);
             }
 
             if ($form->get('saveAndExit')->isClicked()) {
-                return $this->redirectToRoute('admin_lesson');
+                return $this->redirectToRoute('admin_users');
             }
         }
-        return $this->render('admin/lesson/edit.html.twig', [
+        return $this->render('admin/user/user.html.twig', [
             'form' => $form,
-            'registrations' => $user->getRegistrations()
         ]);
+    }
+
+    #[Route('/remove-user/{user}', name: 'admin_delete_user')]
+    public function deleteUser(User $user): Response
+    {
+        $this->userRepository->remove($user, true);
+        return $this->redirectToRoute('admin_users');
     }
 }
