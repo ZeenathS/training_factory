@@ -1,7 +1,13 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Home - Member{% endblock %}
-
+{% block title %}Member{% endblock %}
 {% block body %}
-
+    <h3>Welcome, {{ user.username }}</h3>
+    <div>
+        <p>Username: {{ user.username }}</p>
+        <p>First name: {{ user.firstname }}</p>
+        <p>Last name: {{ user.lastname }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Date of birth: {{ user.dateofbirth|date("l, jS") }} of {{ user.dateofbirth|date("F") }} | {{ user.dateofbirth|date("j-m-Y") }}</p>
+    </div>
+    <a href="{{ path('app_edit_profile') }}" class="btn btn-info" style="width: max-content">Edit profile</a>
 {% endblock %}
