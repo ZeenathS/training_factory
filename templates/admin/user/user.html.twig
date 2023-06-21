@@ -17,8 +17,9 @@
             {{ form_row(form.hiring_date) }}
             {{ form_row(form.salary) }}
             {{ form_row(form.social_sec_number) }}
+            {{ form_row(form.save) }}
         {% endif %}
-    {{ form_end(form, {render_rest: false}) }}
+    {{ form_end(form) }}
 {#    <div class="d-flex gap-3">#}
 {#        <a href="{{ path('admin_users') }}" class="def-btn" style="width: max-content">#}
 {#            Save#}

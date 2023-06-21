@@ -25,9 +25,11 @@
     </div>
     <div class="offcanvas-body">
         <ul class="navbar-nav d-flex justify-content-end flex-grow-1 pe-3">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ path("app_profile") }}">View profile</a>
             </li>
+            {% endif %}
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ path("app_visitor") }}">Home</a>
             </li>
